@@ -40,6 +40,24 @@ app.get('/magic/:question', async (req, res) => {
     res.send(`${question}? Magic 8 Ball says... ${eightBall[response]}!`)
 })
 
+//FIBONACCI
+app.get('/fibonacci/:num', async (req, res) => {
+    let num = req.params.num
+    let fibonacci = 1
+    let addends1 = 1
+    let addends2 = 1
+    while (num > fibonacci) {
+        fibonacci = addends1 + addends2
+        addends1 = addends2
+        addends2 = fibonacci
+        if (num == fibonacci) {
+            res.send(`Very good. ${num} is fibonacci.`)
+        } else if (num <= fibonacci && num !== fibonacci) {
+            res.send(`I can tell ${num} is not a fibonacci number.`)
+        }
+    }
+})
+
 app.listen(3000, () => {
     console.log('I\'m listening!')
 })
